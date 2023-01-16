@@ -7,12 +7,17 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import HelloWorld from '@/components/HelloWorld.vue'
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: {
-    HelloWorld,
+    HelloWorld
   },
-};
+  mounted() {
+    let user = localStorage.getItem('user')
+    if (!user) {
+      this.$router.push('login')
+    }
+  }
+}
 </script>
