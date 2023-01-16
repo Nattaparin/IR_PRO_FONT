@@ -1,13 +1,14 @@
 <template>
   <!-- component -->
-  <nav class="body" id="container">
-    <div class="">
-      <a href="/"><img id="logo" src="@/assets/logo2.png" alt="a" /></a>
+  <div>
+    <nav id="container">
       <div class="">
-        <!-- <span class="font-semibold text-xl tracking-tight">ANIME-W</span> -->
-        <!-- <img class="h-20 w-50" src="../assets/ANIME-W.png" alt="" /> -->
-      </div>
-      <div class="">
+        <a href="/"><img id="logo" src="@/assets/logo2.png" alt="a" /></a>
+        <div class="">
+          <!-- <span class="font-semibold text-xl tracking-tight">ANIME-W</span> -->
+          <!-- <img class="h-20 w-50" src="../assets/ANIME-W.png" alt="" /> -->
+        </div>
+        <!-- <div class="">
         <button id="" class="">
           <svg
             class="fill-current h-3 w-3"
@@ -17,88 +18,89 @@
             <title>Menu</title>
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
-        </button>
+        </button> -->
+        <!-- </div> -->
       </div>
-    </div>
 
-    <div class="">
       <div class="">
-        <button @click="$router.push({ path: '/' })" class="ribbon2">
-          Anime
-        </button>
-
-        <button @click="$router.push({ path: '/about' })" class="ribbon">
-          Bookmark
-        </button>
-      </div>
-      <dropdown
-        v-model="select_search"
-        :options="choice"
-        :selected="choose"
-        v-on:updateOption="methodToRunOnSelect"
-      ></dropdown>
-      <!-- This is an example component -->
-      <div class="">
-        <Form @submit="check_search" :validation-schema="schema">
-          <Field
-            class="search"
-            type="input"
-            name="input"
-            placeholder="Search"
-          />
-          <button type="submit" class="jj">
-            <svg
-              class="text-gray-600 h-4 w-4 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              id="Capa_1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 56.966 56.966"
-              style="enable-background: new 0 0 56.966 56.966"
-              xml:space="preserve"
-              width="12px"
-              height="12px"
-            >
-              <path
-                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
-              />
-            </svg>
+        <div class="">
+          <button @click="$router.push({ path: '/' })" class="ribbon2">
+            Anime
           </button>
-        </Form>
-      </div>
-      <div class="">
-        <p class="user">
-          {{ GStore.currentUser.username }}
-        </p>
-        <button
-          v-if="!GStore.currentUser"
-          @click="$router.push('login')"
-          class="r"
-        >
-          Login
-        </button>
 
-        <button v-if="GStore.currentUser" @click="logout" class="logout">
-          Logout
-        </button>
+          <button @click="$router.push({ path: '/about' })" class="ribbon">
+            Bookmark
+          </button>
+        </div>
+        <dropdown
+          v-model="select_search"
+          :options="choice"
+          :selected="choose"
+          v-on:updateOption="methodToRunOnSelect"
+        ></dropdown>
+        <!-- This is an example component -->
+        <div class="">
+          <Form @submit="check_search" :validation-schema="schema">
+            <Field
+              class="search"
+              type="input"
+              name="input"
+              placeholder="Search"
+            />
+            <button type="submit" class="jj">
+              <svg
+                class="text-gray-600 h-4 w-4 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                id="Capa_1"
+                x="0px"
+                y="0px"
+                viewBox="0 0 56.966 56.966"
+                style="enable-background: new 0 0 56.966 56.966"
+                xml:space="preserve"
+                width="12px"
+                height="12px"
+              >
+                <path
+                  d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+                />
+              </svg>
+            </button>
+          </Form>
+        </div>
+        <div class="">
+          <p class="user">
+            {{ GStore.currentUser.username }}
+          </p>
+          <button
+            v-if="!GStore.currentUser"
+            @click="$router.push('login')"
+            class="r"
+          >
+            Login
+          </button>
+
+          <button v-if="GStore.currentUser" @click="logout" class="logout">
+            Logout
+          </button>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>
 <script>
 import AuthService from '@/service/AuthService.js'
 import AnimeService from '@/service/AnimeService.js'
 import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
-import dropdown from 'vue-dropdowns'
+// import dropdown from 'vue-dropdowns'
 export default {
   inject: ['GStore'],
   name: 'NavBar',
   components: {
     Form,
-    Field,
-    dropdown
+    Field
+    // dropdown
   },
   data() {
     const schema = yup.object().shape({
@@ -147,11 +149,13 @@ export default {
   padding: 0;
 }
 .body {
-  background-color: #0088ff;
+  position: fixed;
+  background-color: #0a8dff;
+  height: 100px;
   font-family: 'Raleway', sans-serif;
 }
 .ribbon {
-  position: absolute;
+  position: fixed;
   background-color: red;
   color: white;
   top: 40px;
@@ -161,7 +165,7 @@ export default {
   border-radius: 8px;
 }
 .ribbon2 {
-  position: absolute;
+  position: fixed;
   margin: 0px 0px 0px -170px;
   background-color: red;
   color: white;
@@ -172,7 +176,7 @@ export default {
   border-radius: 8px;
 }
 .ribbon:hover {
-  position: absolute;
+  position: fixed;
   background-color: rgb(195, 255, 0);
   color: rgb(255, 0, 0);
   top: 40px;
@@ -180,7 +184,7 @@ export default {
   text-align: center;
 }
 .ribbon2:hover {
-  position: absolute;
+  position: fixed;
   margin: 0px 0px 0px -170px;
   background-color: rgb(195, 255, 0);
   color: rgb(255, 0, 0);
@@ -189,7 +193,7 @@ export default {
   text-align: center;
 }
 .user {
-  position: absolute;
+  position: fixed;
   margin: 0px 0px 0px 950px;
   background-color: #0088ff;
   color: white;
@@ -200,7 +204,7 @@ export default {
   border-radius: 8px;
 }
 .logout {
-  position: absolute;
+  position: fixed;
   margin: 0px 0px 0px 250px;
   background-color: #ff0000;
   color: white;
@@ -211,7 +215,7 @@ export default {
   border-radius: 8px;
 }
 .logout:hover {
-  position: absolute;
+  position: fixed;
   margin: 0px 0px 0px 250px;
   background-color: rgb(195, 255, 0);
   color: rgb(255, 0, 0);
@@ -222,18 +226,14 @@ export default {
   border-radius: 8px;
 }
 .search {
-  position: absolute;
+  position: fixed;
   margin: 0px 0px 0px -450px;
-  background-color: rgb(195, 255, 0);
-  color: rgb(255, 0, 0);
   top: 40px;
   width: 200px;
   text-align: center;
-  margin-right: 0.5rem;
-  border-radius: 8px;
 }
 .jj {
-  position: absolute;
+  position: fixed;
   margin: 0px 0px 0px -250px;
   top: 40px;
 }
@@ -246,16 +246,19 @@ export default {
   box-shadow: -2px -2px 5px white, 2px -2px 5px white;
 }
 #container > nav {
+  background-color: black;
   width: 100%;
   display: flex;
   max-height: 60px;
 }
 #logo {
-  margin: 0px 1500px 0px 0px;
-  line-height: 20px;
+  position: fixed;
+  margin: 0px 0px 0px -596px;
+  top: 10px;
+  height: 65px;
   padding: 0 0px;
   background-color: white;
-  width: 100px;
+  width: 70px;
 }
 #container > nav > ul {
   margin: 0;
@@ -267,6 +270,7 @@ export default {
   /*   min-width:60%; */
 }
 #container > nav > ul > li {
+  background-color: black;
   line-height: 60px;
   margin: 0 0px;
   padding: 0;
@@ -278,7 +282,7 @@ export default {
 }
 #container > nav > ul > li > a {
   position: relative;
-  /*   background-color:red; */
+  background-color: red;
   margin: 0 20px;
   color: white;
 }
