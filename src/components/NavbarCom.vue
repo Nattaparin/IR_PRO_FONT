@@ -1,6 +1,6 @@
 <template>
-  <a href="/"><img id="logo" src="@/assets/logo2.png" alt="a" /></a>
-  <div id="nav">
+  <div class="bg">
+    <a href="/"><img class="logo" src="@/assets/logo2.png" alt="a" /></a>
     <div class="menu">
       <div class="navbar">
         <router-link class="ribbon" :to="{ name: 'home' }">Home</router-link>
@@ -38,7 +38,7 @@
             </p>
             <li class="nav-item">
               <a class="nav-link" @click="logout">
-                <font-awesome-icon icon="sign-out-alt" /> Logout
+                <font-awesome-icon icon="sign-out-alt" /> | Logout
               </a>
             </li>
           </ul>
@@ -73,7 +73,7 @@ export default {
 };
 </script>
 <style scoped>
-#nav {
+/* #nav {
   position: cover;
   top: 1px;
   height: 60px;
@@ -81,7 +81,7 @@ export default {
   background: rgba(146, 246, 149, 0.925);
   margin-right: 0.5rem;
   border-radius: 8px;
-}
+} */
 .menu {
   display: flex;
   flex-direction: row;
@@ -98,6 +98,21 @@ MDBNavbar {
 * {
   margin: 0;
   padding: 0;
+}
+.logo {
+  position: fixed;
+  margin: -10px 0px 0px -745px;
+  top: 10px;
+  height: 60px;
+  padding: 0 0px;
+  width: 70px;
+}
+.bg {
+  top: 1px;
+  position: fixed;
+  background-color: #71f881;
+  height: 60px;
+  width: 1500px;
 }
 .body {
   position: fixed;
@@ -195,7 +210,7 @@ MDBNavbar {
 }
 .search {
   position: fixed;
-  margin: 25px 0px 0px 250px;
+  margin: 15px 0px 0px 250px;
   top: 9px;
   width: 100px;
   text-align: center;
@@ -203,14 +218,14 @@ MDBNavbar {
 .search:hover {
   position: fixed;
   background-color: aqua;
-  margin: 25px 0px 0px 250px;
+  margin: 15px 0px 0px 250px;
   top: 9px;
   width: 100px;
   text-align: center;
 }
 .searchbar {
   position: fixed;
-  margin: 25px 0px 0px 100px;
+  margin: 15px 0px 0px 100px;
   top: 9px;
   width: 150px;
   text-align: center;
@@ -220,7 +235,6 @@ MDBNavbar {
   margin: 0px 0px 0px -250px;
   top: 40px;
 }
-
 #container {
   position: relative;
   width: 80%;
@@ -234,7 +248,7 @@ MDBNavbar {
   display: flex;
   max-height: 60px;
 }
-#logo {
+/* .logo {
   position: fixed;
   margin: -10px 0px 0px -730px;
   top: 10px;
@@ -242,7 +256,7 @@ MDBNavbar {
   padding: 0 0px;
   background-color: white;
   width: 70px;
-}
+} */
 #container > nav > ul {
   margin: 0;
   padding: 0;
