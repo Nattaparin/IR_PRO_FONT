@@ -4,14 +4,14 @@
       <div id="detail">
         <img class="img" :src="anime.images" alt="anime_image" />
         <h2>{{ anime.title }}</h2>
-        <p>
-          <span>Synopsis</span><br />
-          {{ anime.synopsis }}
-        </p>
-        <p>
-          <span>Genres</span><br />
-          {{ anime.genres }}
-        </p>
+        <p><span>Synopsis</span><br /></p>
+
+        <p class="text">{{ anime.synopsis }}</p>
+        <p></p>
+        <p><span>Genres</span><br /></p>
+
+        <p class="text">{{ anime.genres }}</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -64,8 +64,13 @@ export default {
 };
 </script>
 <style scoped>
-span {
+span,
+h2 {
   font-weight: bold;
+  color: rgb(254, 254, 254);
+}
+.text {
+  color: rgb(252, 9, 9);
 }
 img {
   margin: 100px 0 0 0;
