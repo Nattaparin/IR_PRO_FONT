@@ -26,9 +26,10 @@ export default {
 </script>
 <style scoped>
 .anime-card {
-  margin: 0px 0 0 20px;
-  padding: 50px;
-  width: 200px;
+  position: cover;
+  margin: 0px 0 0 100px;
+  /* padding: 50px; */
+  width: 250px;
   cursor: pointer;
   border: 5px solid #fad61f;
   margin-bottom: 18px;
