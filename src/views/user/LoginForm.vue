@@ -58,9 +58,9 @@
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from 'vee-validate'
-import * as yup from 'yup'
-import AuthService from '@/service/AuthService.js'
+import { Form, Field, ErrorMessage } from 'vee-validate';
+import * as yup from 'yup';
+import AuthService from '@/service/AuthService.js';
 export default {
   name: 'LoginView',
   components: {
@@ -72,40 +72,40 @@ export default {
     const schema = yup.object().shape({
       username: yup.string().required('User name is required!'),
       password: yup.string().required('Password is required!')
-    })
+    });
     return {
       loading: false,
       message: '',
       schema
-    }
+    };
   },
   methods: {
     handleLogin(user) {
       AuthService.login(user)
         .then(() => {
-          this.$router.push({ path: '/' })
+          this.$router.push({ path: '/' });
         })
         .catch(() => {
-          this.message = 'could not login'
-        })
+          this.message = 'could not login';
+        });
     }
   }
-}
+};
 </script>
 <style scoped>
 @import url('https://rsms.me/inter/inter-ui.css');
 ::selection {
-  background: #2d2f36;
+  background: #ffffff;
 }
 ::-webkit-selection {
-  background: #2d2f36;
+  background: #eaeaea;
 }
 ::-moz-selection {
-  background: #2d2f36;
+  background: #8399eb;
 }
 .body2 {
   background-image: url('@/assets/1.jpg');
-  margin: 0;
+  margin: 0px 0 0 -50px;
   padding: 100%;
   position: fixed;
 }
@@ -116,9 +116,9 @@ export default {
   padding: 20px;
 }
 .img {
-  /* margin: 50px 40px 40px 370px; */
+  /* margin: 0px 0px 0px 0px; */
   width: 350px;
-  height: 400px;
+  height: 417px;
 }
 .page2 {
   /* margin: 50px 40px 40px 370px; */
@@ -137,7 +137,7 @@ export default {
   height: 200px;
   top: 20%;
   left: 40%;
-  margin-left: -250px; /* Negative half of width. */
+  margin-left: -260px; /* Negative half of width. */
   background: #0e85c0;
   /* display: flex; */
   flex-direction: column;

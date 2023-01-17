@@ -1,144 +1,90 @@
 <template>
-  <!-- component -->
-  <div>
-    <nav id="container">
-      <div class="">
-        <a href="/"><img id="logo" src="@/assets/logo2.png" alt="a" /></a>
-        <div class="">
-          <!-- <span class="font-semibold text-xl tracking-tight">ANIME-W</span> -->
-          <!-- <img class="h-20 w-50" src="../assets/ANIME-W.png" alt="" /> -->
-        </div>
-        <!-- <div class="">
-        <button id="" class="">
-          <svg
-            class="fill-current h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button> -->
-        <!-- </div> -->
+  <a href="/"><img id="logo" src="@/assets/logo2.png" alt="a" /></a>
+  <div id="nav">
+    <div class="menu">
+      <div class="navbar">
+        <router-link class="ribbon" :to="{ name: 'home' }">Home</router-link>
+        <router-link class="ribbon2" :to="{ name: 'about' }"
+          >Bookmark</router-link
+        >
       </div>
 
-      <div class="">
-        <div class="">
-          <button @click="$router.push({ path: '/' })" class="ribbon2">
-            Anime
-          </button>
-
-          <button @click="$router.push({ path: '/about' })" class="ribbon">
-            Bookmark
+      <Form @submit="search" :validation-schema="schema">
+        <Field name="search" type="text" class="form-control searchbar" />
+        <div class="form-group">
+          <button class="btn btn-primary btn-block search">
+            <span>Search</span>
           </button>
         </div>
-        <dropdown
-          v-model="select_search"
-          :options="choice"
-          :selected="choose"
-          v-on:updateOption="methodToRunOnSelect"
-        ></dropdown>
-        <!-- This is an example component -->
-        <div class="">
-          <Form @submit="check_search" :validation-schema="schema">
-            <Field
-              class="search"
-              type="input"
-              name="input"
-              placeholder="Search"
-            />
-            <button type="submit" class="jj">
-              <svg
-                class="text-gray-600 h-4 w-4 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                version="1.1"
-                id="Capa_1"
-                x="0px"
-                y="0px"
-                viewBox="0 0 56.966 56.966"
-                style="enable-background: new 0 0 56.966 56.966"
-                xml:space="preserve"
-                width="12px"
-                height="12px"
-              >
-                <path
-                  d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
-                />
-              </svg>
-            </button>
-          </Form>
-        </div>
-        <div class="">
-          <p class="user">
-            {{ GStore.currentUser.username }}
-          </p>
-          <button
-            v-if="!GStore.currentUser"
-            @click="$router.push('login')"
-            class="r"
-          >
-            Login
-          </button>
-
-          <button v-if="GStore.currentUser" @click="logout" class="logout">
-            Logout
-          </button>
-        </div>
+      </Form>
+      <div id="nav">
+        <nav class="navbar navbar-expand">
+          <ul v-if="!GStore.currentUser" class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <router-link to="/login" class="nav-link logout">
+                <font-awesome-icon icon="sign-in-alt" /> Login
+              </router-link>
+            </li>
+          </ul>
+          <ul v-if="GStore.currentUser" class="navbar-nav ml-auto logout">
+            <li class="nav-item">
+              <router-link to="/profile" class="nav-link">
+                <font-awesome-icon icon="user" />
+                {{ GStore.currentUser.name }}
+              </router-link>
+            </li>
+            <p class="user">
+              {{ GStore.currentUser.username }}
+            </p>
+            <li class="nav-item">
+              <a class="nav-link" @click="logout">
+                <font-awesome-icon icon="sign-out-alt" /> Logout
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </nav>
+    </div>
   </div>
 </template>
 <script>
-import AuthService from '@/service/AuthService.js'
-import AnimeService from '@/service/AnimeService.js'
-import { Form, Field } from 'vee-validate'
-import * as yup from 'yup'
-// import dropdown from 'vue-dropdowns'
+import { Form, Field } from 'vee-validate';
+import AuthService from '../service/AuthService.js';
+import AnimeService from '../service/anime/AnimeService.js';
+
 export default {
   inject: ['GStore'],
-  name: 'NavBar',
+  name: 'NavbarCom',
   components: {
     Form,
     Field
-    // dropdown
-  },
-  data() {
-    const schema = yup.object().shape({
-      input: yup.string()
-    })
-    return {
-      schema,
-      select_search: null,
-      choice: [{ name: 'Title' }, { name: 'Description' }],
-      choose: {
-        name: 'Selected search'
-      }
-    }
   },
   methods: {
     logout() {
-      AuthService.logout()
-      this.$router.go()
+      AuthService.logout();
+      this.$router.go();
     },
-    methodToRunOnSelect(payload) {
-      this.choose = payload
-    },
-    check_search(input) {
-      if (
-        this.choose.name == 'Selected search' ||
-        this.choose.name == 'Title'
-      ) {
-        AnimeService.getAnimeList(input)
-        setTimeout(() => this.$router.push('animeList'), 200)
-      } else {
-        AnimeService.getAnimeList_description(input)
-        setTimeout(() => this.$router.push('animeList'), 200)
-      }
+    search(query) {
+      console.log(query);
+      AnimeService.searchAnime(query);
+      // setTimeout(() => this.$route.push('animeList'), 200)
     }
   }
-}
+};
 </script>
 <style scoped>
+#nav {
+  width: 50px;
+  background: rgba(201, 0, 241, 0.925);
+}
+.menu {
+  display: flex;
+  flex-direction: row;
+}
+MDBNavbar {
+  display: flex;
+  flex-direction: row;
+}
 /* .r {
   top: 20%;
   left: 40%;
@@ -156,9 +102,10 @@ export default {
 }
 .ribbon {
   position: fixed;
+  margin: 0px 0px 0px 520px;
   background-color: red;
   color: white;
-  top: 40px;
+  top: 10px;
   width: 160px;
   text-align: center;
   margin-right: 0.5rem;
@@ -166,10 +113,10 @@ export default {
 }
 .ribbon2 {
   position: fixed;
-  margin: 0px 0px 0px -170px;
+  margin: 0px 0px 0px 700px;
   background-color: red;
   color: white;
-  top: 40px;
+  top: 10px;
   width: 160px;
   text-align: center;
   margin-right: 0.5rem;
@@ -177,59 +124,58 @@ export default {
 }
 .ribbon:hover {
   position: fixed;
+  margin: 0px 0px 0px 520px;
   background-color: rgb(195, 255, 0);
   color: rgb(255, 0, 0);
-  top: 40px;
+  top: 10px;
   width: 160px;
   text-align: center;
 }
 .ribbon2:hover {
   position: fixed;
-  margin: 0px 0px 0px -170px;
+  margin: 0px 0px 0px 700px;
   background-color: rgb(195, 255, 0);
   color: rgb(255, 0, 0);
-  top: 40px;
+  top: 10px;
   width: 160px;
   text-align: center;
-}
-.user {
-  position: fixed;
-  margin: 0px 0px 0px 950px;
-  background-color: #0088ff;
-  color: white;
-  top: 40px;
-  width: 160px;
-  text-align: center;
-  margin-right: 0.5rem;
-  border-radius: 8px;
 }
 .logout {
   position: fixed;
-  margin: 0px 0px 0px 250px;
+  margin: 0px 0px 0px 1300px;
   background-color: #ff0000;
   color: white;
-  top: 40px;
-  width: 95px;
+  top: 10px;
+  /* height: 35px; */
+  width: 150px;
   text-align: center;
   margin-right: 0.5rem;
   border-radius: 8px;
 }
 .logout:hover {
   position: fixed;
-  margin: 0px 0px 0px 250px;
+  margin: 0px 0px 0px 1300px;
   background-color: rgb(195, 255, 0);
   color: rgb(255, 0, 0);
-  top: 40px;
-  width: 95px;
+  top: 10px;
+  /* height: 35px; */
+  width: 150px;
   text-align: center;
   margin-right: 0.5rem;
   border-radius: 8px;
 }
 .search {
   position: fixed;
-  margin: 0px 0px 0px -450px;
-  top: 40px;
-  width: 200px;
+  margin: 0px 0px 0px 250px;
+  top: 9px;
+  width: 100px;
+  text-align: center;
+}
+.searchbar {
+  position: fixed;
+  margin: 0px 0px 0px 100px;
+  top: 9px;
+  width: 150px;
   text-align: center;
 }
 .jj {
@@ -253,7 +199,7 @@ export default {
 }
 #logo {
   position: fixed;
-  margin: 0px 0px 0px -596px;
+  margin: -15px 0px 0px -750px;
   top: 10px;
   height: 65px;
   padding: 0 0px;
