@@ -118,7 +118,7 @@ export default {
 .img {
   /* margin: 0px 0px 0px 0px; */
   width: 350px;
-  height: 417px;
+  height: 400px;
 }
 .page2 {
   /* margin: 50px 40px 40px 370px; */
