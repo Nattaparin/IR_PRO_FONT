@@ -2,7 +2,7 @@
   <div v-for="anime in GStore.details" :key="anime.mal_id">
     <div class="dark:bg-gray-800 dark:text-gray-50">
       <div id="detail">
-        <img :src="anime.images" alt="anime_image" />
+        <img class="img" :src="anime.images" alt="anime_image" />
         <h2>{{ anime.title }}</h2>
         <p>
           <span>Synopsis</span><br />
@@ -66,5 +66,8 @@ export default {
 <style scoped>
 span {
   font-weight: bold;
+}
+img {
+  margin: 100px 0 0 0;
 }
 </style>

@@ -112,7 +112,9 @@ MDBNavbar {
   position: fixed;
   background-color: #71f881;
   height: 60px;
-  width: 1500px;
+  width: 1490px;
+  margin-right: 0.5rem;
+  border-radius: 8px;
 }
 .body {
   position: fixed;
