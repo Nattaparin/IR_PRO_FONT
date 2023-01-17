@@ -26,18 +26,19 @@ export default {
 </script>
 <style scoped>
 .anime-card {
-  padding: 20px;
-  width: 250px;
+  margin: 0px 0 0 20px;
+  padding: 50px;
+  width: 200px;
   cursor: pointer;
-  border: 1px solid #ce0aad;
+  border: 5px solid #fad61f;
   margin-bottom: 18px;
 }
 .anime-card:hover {
   transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(255, 0, 149, 0.459);
+  box-shadow: 0 3px 12px 0 rgba(252, 0, 0, 0.459);
 }
 .anime-link {
-  color: #59335e;
+  color: #000000;
   text-decoration: none;
 }
 </style>
